@@ -4,3 +4,4 @@
 # vs code
 .history
 .vscode
+.__pycache__

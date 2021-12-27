@@ -1,29 +1,55 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.gridspec import GridSpec
 import cv2
-from PIL import ImageFont, ImageDraw, Image
+from PIL import ImageDraw, Image
 
-a_1 = 1
-b_1 = 0.9
-diffusion_rate = 0.8
+from src.env.imgs import img
 
 
 class EnvFindGoals(object):
 
+    """
+    :param agent_count count of agent
+    :param map_size size of map
+    :param visual_field
+    :param a1
+    :param a2
+    :param b1
+    :param b2
+    :param c1
+    :param diffusion_rate
+    :param target_shape
+    """
     def __init__(self,
                  agent_count=4,
-                 map_size=(30, 30)
+                 map_size=(30, 30),
+                 visual_field=6,
+                 a1=1,
+                 a2=1,
+                 b1=0.9,
+                 b2=0,
+                 c1=0.25,
+                 diffusion_rate=0.8,
+                 target_shape=2
                  ):
 
         self.agent_count = agent_count
-        self.agent_position = np.random.randint(1, map_size[0], size=(agent_count, 2))
+        self.agent_position = np.random.randint(1, map_size[0], size=(self.agent_count, 2))
+        self.visual_field = visual_field
+        self.a1 = a1
+        self.a2 = a2
+        self.b1 = b1
+        self.b2 = b2
+        self.c1 = c1
+        self.diffusion_rate = diffusion_rate
+        self.target_shape = target_shape
         self.rows = map_size[0]
         self.cols = map_size[1]
 
         maps = np.zeros((self.rows, self.cols))
-        factor_maps = np.zeros_like(maps)
-        target_maps = np.random.randint(0, 9, size=np.array(maps).shape)
+        factor_maps = np.full_like(maps, -1)
+        target_maps = self._generate_digit_img(self.target_shape, self.rows)
+
+        # target_maps = np.where(target_maps == 1, 1, 0)
 
         self.maps = np.pad(maps, ((1, 1), (1, 1)), mode='constant', constant_values=1)
         self.factor_maps = np.pad(factor_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
@@ -31,207 +57,117 @@ class EnvFindGoals(object):
 
         self.occupancy = maps
 
-    def list_add(self, a, b):
-        c = [a[i] + b[i] for i in range(min(len(a), len(b)))]
-        return c
+    # 获取全部智能体的状态
+    def _state(self):
+        state_all = []
+        for agent in range(self.agent_count):
+            state_all.append(self._state_by_agent(agent))
 
-    def get_agt1_obs(self):
-        visual_range = 3
-        vec = np.zeros((visual_range, visual_range, 3))
+        return np.array(state_all)
 
-        for i in range(visual_range):
-            for j in range(visual_range):
-                vec[i, j, 0] = 1.0
-                vec[i, j, 1] = 1.0
-                vec[i, j, 2] = 1.0
+    '''
+        判断指定的智能体的在 x 轴方向能否移动 move_x，在 y 轴方向能够移动 move_y 
+    '''
 
-        # detect block
-        if self.occupancy[self.agt1_pos[0] - 1][self.agt1_pos[1] + 1] == 1:
-            vec[0, 0, 0] = 0.0
-            vec[0, 0, 1] = 0.0
-            vec[0, 0, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0]][self.agt1_pos[1] + 1] == 1:
-            vec[0, 1, 0] = 0.0
-            vec[0, 1, 1] = 0.0
-            vec[0, 1, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0] + 1][self.agt1_pos[1] + 1] == 1:
-            vec[0, 2, 0] = 0.0
-            vec[0, 2, 1] = 0.0
-            vec[0, 2, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0] - 1][self.agt1_pos[1]] == 1:
-            vec[1, 0, 0] = 0.0
-            vec[1, 0, 1] = 0.0
-            vec[1, 0, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0] + 1][self.agt1_pos[1]] == 1:
-            vec[1, 2, 0] = 0.0
-            vec[1, 2, 1] = 0.0
-            vec[1, 2, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0] - 1][self.agt1_pos[1] - 1] == 1:
-            vec[2, 0, 0] = 0.0
-            vec[2, 0, 1] = 0.0
-            vec[2, 0, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0]][self.agt1_pos[1] - 1] == 1:
-            vec[2, 1, 0] = 0.0
-            vec[2, 1, 1] = 0.0
-            vec[2, 1, 2] = 0.0
-        if self.occupancy[self.agt1_pos[0] + 1][self.agt1_pos[1] - 1] == 1:
-            vec[2, 2, 0] = 0.0
-            vec[2, 2, 1] = 0.0
-            vec[2, 2, 2] = 0.0
+    def _can_move(self, agent, move_x, move_y):
+        agent_current_position = self.agent_position[agent]
 
-        # detect self
-        vec[1, 1, 0] = 1.0
-        vec[1, 1, 1] = 0.0
-        vec[1, 1, 2] = 0.0
+        return 0 < agent_current_position[1] + move_x < self.cols + 2 \
+               and 0 < agent_current_position[0] + move_y < self.rows + 2
 
-        # detect agent2
-        if self.agt2_pos == self.list_add(self.agt1_pos, [-1, 1]):
-            vec[0, 0, 0] = 0.0
-            vec[0, 0, 1] = 0.0
-            vec[0, 0, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [0, 1]):
-            vec[0, 1, 0] = 0.0
-            vec[0, 1, 1] = 0.0
-            vec[0, 1, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [1, 1]):
-            vec[0, 2, 0] = 0.0
-            vec[0, 2, 1] = 0.0
-            vec[0, 2, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [-1, 0]):
-            vec[1, 0, 0] = 0.0
-            vec[1, 0, 1] = 0.0
-            vec[1, 0, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [1, 0]):
-            vec[1, 2, 0] = 0.0
-            vec[1, 2, 1] = 0.0
-            vec[1, 2, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [-1, -1]):
-            vec[2, 0, 0] = 0.0
-            vec[2, 0, 1] = 0.0
-            vec[2, 0, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [0, -1]):
-            vec[2, 1, 0] = 0.0
-            vec[2, 1, 1] = 0.0
-            vec[2, 1, 2] = 1.0
-        if self.agt2_pos == self.list_add(self.agt1_pos, [1, -1]):
-            vec[2, 2, 0] = 0.0
-            vec[2, 2, 1] = 0.0
-            vec[2, 2, 2] = 1.0
-        return vec
+    '''
+        计算 agent 和 attractor 之间的曼哈顿距离
+    '''
 
-    def get_agt2_obs(self):
-        visual_range = 3
-        vec = np.zeros((visual_range, visual_range, 3))
+    def _calculate_d(self, agent_position, attractor_position):
+        distance = np.sum(np.abs(agent_position - attractor_position))
 
-        for i in range(visual_range):
-            for j in range(visual_range):
-                vec[i, j, 0] = 1.0
-                vec[i, j, 1] = 1.0
-                vec[i, j, 2] = 1.0
+        return self.a2 * np.exp(-np.square(distance - self.b2) / 2 * np.square(self.c1))
 
-        # detect block
-        if self.occupancy[self.agt2_pos[0] - 1][self.agt2_pos[1] + 1] == 1:
-            vec[0, 0, 0] = 0.0
-            vec[0, 0, 1] = 0.0
-            vec[0, 0, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0]][self.agt2_pos[1] + 1] == 1:
-            vec[0, 1, 0] = 0.0
-            vec[0, 1, 1] = 0.0
-            vec[0, 1, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0] + 1][self.agt2_pos[1] + 1] == 1:
-            vec[0, 2, 0] = 0.0
-            vec[0, 2, 1] = 0.0
-            vec[0, 2, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0] - 1][self.agt2_pos[1]] == 1:
-            vec[1, 0, 0] = 0.0
-            vec[1, 0, 1] = 0.0
-            vec[1, 0, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0] + 1][self.agt2_pos[1]] == 1:
-            vec[1, 2, 0] = 0.0
-            vec[1, 2, 1] = 0.0
-            vec[1, 2, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0] - 1][self.agt2_pos[1] - 1] == 1:
-            vec[2, 0, 0] = 0.0
-            vec[2, 0, 1] = 0.0
-            vec[2, 0, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0]][self.agt2_pos[1] - 1] == 1:
-            vec[2, 1, 0] = 0.0
-            vec[2, 1, 1] = 0.0
-            vec[2, 1, 2] = 0.0
-        if self.occupancy[self.agt2_pos[0] + 1][self.agt2_pos[1] - 1] == 1:
-            vec[2, 2, 0] = 0.0
-            vec[2, 2, 1] = 0.0
-            vec[2, 2, 2] = 0.0
+    '''
+        计算指定智能体的 attractor
+    '''
 
-        # detect self
-        vec[1, 1, 0] = 0.0
-        vec[1, 1, 1] = 0.0
-        vec[1, 1, 2] = 1.0
+    def _attractor_by_agent(self, agent):
+        # 获取当前智能体的位置
+        agent_current_position = self.agent_position[agent]
 
-        # detect agent2
-        if self.agt1_pos == self.list_add(self.agt2_pos, [-1, 1]):
-            vec[0, 0, 0] = 1.0
-            vec[0, 0, 1] = 0.0
-            vec[0, 0, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [0, 1]):
-            vec[0, 1, 0] = 1.0
-            vec[0, 1, 1] = 0.0
-            vec[0, 1, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [1, 1]):
-            vec[0, 2, 0] = 1.0
-            vec[0, 2, 1] = 0.0
-            vec[0, 2, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [-1, 0]):
-            vec[1, 0, 0] = 1.0
-            vec[1, 0, 1] = 0.0
-            vec[1, 0, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [1, 0]):
-            vec[1, 2, 0] = 1.0
-            vec[1, 2, 1] = 0.0
-            vec[1, 2, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [-1, -1]):
-            vec[2, 0, 0] = 1.0
-            vec[2, 0, 1] = 0.0
-            vec[2, 0, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [0, -1]):
-            vec[2, 1, 0] = 1.0
-            vec[2, 1, 1] = 0.0
-            vec[2, 1, 2] = 0.0
-        if self.agt1_pos == self.list_add(self.agt2_pos, [1, -1]):
-            vec[2, 2, 0] = 1.0
-            vec[2, 2, 1] = 0.0
-            vec[2, 2, 2] = 0.0
-        return vec
+        attractor_value = 0
+        attractor_position = np.array([-1, -1])
 
-    def get_full_obs(self):
-        obs = np.ones((8, 10, 3))
-        for i in range(8):
-            for j in range(10):
-                if self.occupancy[j][i] == 1:
-                    obs[3 - i, j, 0] = 0
-                    obs[3 - i, j, 1] = 0
-                    obs[3 - i, j, 2] = 0
-                if [j, i] == self.agt1_pos:
-                    obs[3 - i, j, 0] = 1
-                    obs[3 - i, j, 1] = 0
-                    obs[3 - i, j, 2] = 0
-                if [j, i] == self.agt2_pos:
-                    obs[3 - i, j, 0] = 0
-                    obs[3 - i, j, 1] = 0
-                    obs[3 - i, j, 2] = 1
-        return obs
+        # 循环迭代视野范围，寻找最大的 attractor
+        for i in np.arange(-self.visual_field, self.visual_field + 1, 1):
+            for j in np.arange(-self.visual_field, self.visual_field + 1, 1):
+                if np.abs(i) + np.abs(j) <= self.visual_field:
+                    move_x = i
+                    move_y = j
 
-    def get_obs(self):
-        return [self.get_agt1_obs(), self.get_agt2_obs()]
+                    is_can_move = self._can_move(agent, move_x, move_y)
+
+                    d = self._calculate_d(agent_current_position, np.array(
+                        [agent_current_position[1] + move_x, agent_current_position[0] + move_y]))
+
+                    if is_can_move and d * self.factor_maps[
+                        agent_current_position[1] + move_x, agent_current_position[0] + move_y] > attractor_value:
+                        attractor_value = self.factor_maps[
+                            agent_current_position[1] + move_x, agent_current_position[0] + move_y]
+                        attractor_position = np.array(
+                            [agent_current_position[1] + move_x, agent_current_position[0] + move_y])
+
+        return attractor_value, attractor_position
+
+    '''
+        获取指定智能体的状态
+    '''
+    def _state_by_agent(self, agent):
+        # 获取当前智能体的位置
+        agent_current_position = self.agent_position[agent]
+
+        # 四个方向是否有智能体
+        is_u_ok = self.maps[agent_current_position[0] - 1][agent_current_position[1]] != 1 \
+            if agent_current_position[0] - 1 > 0 else False
+        is_r_ok = self.maps[agent_current_position[0]][agent_current_position[1] + 1] != 1 \
+            if agent_current_position[1] + 1 < self.cols + 2 else False
+        is_d_ok = self.maps[agent_current_position[0] + 1][agent_current_position[1]] != 1 \
+            if agent_current_position[0] + 1 < self.rows + 2 else False
+        is_l_ok = self.maps[agent_current_position[0]][agent_current_position[1] - 1] != 1 \
+            if agent_current_position[1] - 1 > 0 else False
+
+        # 首先计算 attractor 的位置，然后计算出相对于 attractor 的位置
+        attractor_value, attractor = self._attractor_by_agent(agent)
+
+        relative_x = agent_current_position[1] - attractor[1]
+        relative_y = agent_current_position[0] - attractor[0]
+
+        # 当前位置是否是目标位置
+        is_h_target = self.target_maps[agent_current_position[0]][agent_current_position[1]] == 1
+
+        return np.array([is_u_ok, is_r_ok, is_d_ok, is_l_ok, relative_x, relative_y, is_h_target])
+
+    '''
+    '''
 
     def reset(self):
-        self.agent_position = np.random.randint(1, self.cols, size=(self.agent_count, 2))
-        self.agent_current = 0
+        factor_maps = np.full_like(self.maps, -1)
+        target_maps = self._generate_digit_img(self.target_shape, self.rows)
 
+        self.factor_maps = np.pad(factor_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
+        self.target_maps = np.pad(target_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
+
+        self.agent_count = np.count_nonzero(target_maps)
+        self.agent_position = np.random.randint(1, self.rows, size=(self.agent_count, 2))
+
+        self.agent_current = 0
         self.panel_x = (self.cols + 2) * 20
         self.panel_y = 0
+        self.rewards = np.zeros(self.agent_count)
 
-    def step_agent(self, agent, action):
+        return self._state_by_agent(self.agent_current)
+
+    '''
+    '''
+
+    def step_agent(self, agent: np.uint8, action: np.uint8) -> np.uint8:
         rewards = np.zeros(self.agent_count)
 
         can_actions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
@@ -247,9 +183,9 @@ class EnvFindGoals(object):
 
         if self.target_maps[agent[0]][agent[1]]:
             self.maps[agent[0]][agent[1]] = 0
-            agent = self.agent_position[i]
+            agent = self.agent_position[agent]
             self.maps[agent[0]][agent[1]] = 1
-            rewards[i] += 50
+            rewards[agent] += 50
 
         done = False
         if rewards[0] > 0:
@@ -257,8 +193,10 @@ class EnvFindGoals(object):
 
         return rewards, done
 
+    '''
+    '''
+
     def step(self, action_list):
-        rewards = np.zeros(self.agent_count)
 
         can_actions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
         for i in range(len(action_list)):
@@ -271,104 +209,142 @@ class EnvFindGoals(object):
                 agent[1] = agent[1] + action[1]
                 self.maps[agent[0]][agent[1]] = 1
             else:
-                rewards[i] -= 3
+                self.rewards[i] -= -10
 
             if self.target_maps[agent[0]][agent[1]]:
                 self.maps[agent[0]][agent[1]] = 0
                 agent = self.agent_position[i]
                 self.maps[agent[0]][agent[1]] = 1
-                rewards[i] += 50
+                self.rewards[i] += 1
 
         self._modify_digital_pheromone()
         self._diffuse_digital_pheromone()
         self._superpose_digital_pheromone()
 
+        # self.factor_maps = np.vectorize(self._sigmoid)(self.target_maps)
+
         done = False
-        if rewards[0] > 0:
+        if self.rewards[0] > 0:
             done = True
-        return rewards, done
-
-    def plot_scene(self):
-        fig = plt.figure(figsize=(5, 5))
-        gs = GridSpec(3, 2, figure=fig)
-        ax1 = fig.add_subplot(gs[0:2, 0:2])
-        plt.xticks([])
-        plt.yticks([])
-        ax2 = fig.add_subplot(gs[2, 0:1])
-        plt.xticks([])
-        plt.yticks([])
-        ax3 = fig.add_subplot(gs[2, 1:2])
-        plt.xticks([])
-        plt.yticks([])
-        ax1.imshow(self.get_full_obs())
-        ax2.imshow(self.get_agt1_obs())
-        ax3.imshow(self.get_agt2_obs())
-
-        plt.show()
+        # print(self._state_by_agent(self.agent_current))
+        return self._state_by_agent(self.agent_current), self.rewards[self.agent_current], done, {}
 
     def _draw_text(self, img, text, position):
-        font = ImageFont.truetype("msyhl.ttc", 15)
+        # font = ImageFont.truetype("msyhl.ttc", 15)
         obs_pil = Image.fromarray(img)
         draw = ImageDraw.Draw(obs_pil)
-        draw.text(position, text, font=font, fill=(0, 0, 0), align='center')
+        draw.text(position, text, fill=(0, 0, 0), align='center')
         obs = np.array(obs_pil)
         return obs
 
-    def render(self):
-        obs = np.full(((self.rows + 2) * 20, (self.cols + 2 + self.cols // 2) * 20, 3), 255, np.uint8)
+    def render(self, mode='human'):
+        obs = np.full(((self.rows + 2) * 20, (self.cols + 2 + self.cols // 2 + self.cols + 2) * 20, 3), 255, np.uint8)
+
+        target_offset_x = self.cols + 2 + self.cols // 2
+        target_offset_y = 0
 
         for i in range(self.rows + 2):
             for j in range(self.cols + 2):
                 if self.maps[i][j] == 1:
                     # cv2.rectangle(obs, (j*20, i*20), (j*20+20, i*20+20), (0, 0, 0), -1)
-                    image_wall = cv2.imread('./imgs/wall.png', 1)
+                    # image_wall = cv2.imread('src/env/imgs/wall.png', 1)
+                    image_wall = np.where(img.wall != 0, img.wall, 255)
+                    # obs[i * 20:i * 20 + 20, j * 20:j * 20 + 20] = image_wall
                     obs[i * 20:i * 20 + 20, j * 20:j * 20 + 20] = image_wall
-                if self.factor_maps[i][j] != 0:
+                if self.factor_maps[i][j] > 1e-2:
                     # print(int(self.factor_maps[i][j] * 100) % 255)
+                    obs = cv2.cvtColor(obs, cv2.COLOR_BGR2HLS)
                     cv2.rectangle(obs,
                                   (j * 20, i * 20),
                                   (j * 20 + 20, i * 20 + 20),
-                                  (int(self.factor_maps[i][j] * 100 % 255), 255, 255),
+                                  (238, 60, np.round(self.factor_maps[i][j] * 100)),
                                   -1)
-                    obs = self._draw_text(obs, str(int(self.factor_maps[i][j] * 10)), (j * 20, i * 20))
+                    obs = cv2.cvtColor(obs, cv2.COLOR_HLS2BGR)
+                    # obs = self._draw_text(obs, str(np.round(self.factor_maps[i][j] * 100)), (j * 20, i * 20))
                 if self.target_maps[i][j] == 1:
-                    image_target = cv2.imread('./imgs/2.png', 1)
+                    tmp = obs[i * 20:i * 20 + 20, j * 20:j * 20 + 20]
+
+                    # image_target = cv2.imread('src/env/imgs/2.png', 1)
+                    image_target = np.where(img.target != 0, img.target, tmp)
+
+                    # tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2HLS)
+                    # tmp = tmp & image_target
+                    # tmp = cv2.cvtColor(tmp, cv2.COLOR_HLS2BGR)
+                    # tmp = np.where(tmp != 0, tmp, 255)
+
                     obs[i * 20:i * 20 + 20, j * 20:j * 20 + 20] = image_target
+        for i in range(self.rows + 2):
+            for j in range(self.cols + 2):
+                if self.maps[i][j] == 1:
+                    # cv2.rectangle(obs, (j*20, i*20), (j*20+20, i*20+20), (0, 0, 0), -1)
+                    # image_wall = cv2.imread('src/env/imgs/wall.png', 1)
+                    image_wall = np.where(img.wall != 0, img.wall, 255)
+
+                    obs[(i + target_offset_y) * 20:(i + target_offset_y) * 20 + 20, \
+                    (j + target_offset_x) * 20:(j + target_offset_x) * 20 + 20] = image_wall
+                if self.factor_maps[i][j] > 1e-2:
+                    # print(np.round(self.factor_maps[i][j] * 255))
+                    obs = cv2.cvtColor(obs, cv2.COLOR_BGR2HLS)
+                    cv2.rectangle(obs,
+                                  ((j + target_offset_x) * 20, (i + target_offset_y) * 20),
+                                  ((j + target_offset_x) * 20 + 20, (i + target_offset_y) * 20 + 20),
+                                  (238, 60, np.round(self.factor_maps[i][j] * 100)),
+                                  -1)
+                    obs = cv2.cvtColor(obs, cv2.COLOR_HLS2BGR)
+                    # obs = self._draw_text(obs, str(np.round(self.factor_maps[i][j] * 255)),
+                    #                       ((j + target_offset_x) * 20, (i + target_offset_y) * 20))
         for i in range(self.agent_count):
             # cv2.rectangle(obs,
             #               (self.agent_position[i][0] * 20, (7-self.agent_position[i][1]) * 20),
             #               (self.agent_position[i][0] * 20 + 20, (7-self.agent_position[i][1]) * 20 + 20),
             #               (255, 0, 0)
             #               -1)
-            image = cv2.imread('./imgs/1.png', 1)
             agent_position = self.agent_position[i]
+            # cv2.imread('src/env/imgs/1.png', 1)
+            image = img.car
+            tmp = obs[agent_position[0] * 20:agent_position[0] * 20 + 20,
+            agent_position[1] * 20:agent_position[1] * 20 + 20]
+            image = np.where(image != 0, image, tmp)
             obs[agent_position[0] * 20:agent_position[0] * 20 + 20,
-                agent_position[1] * 20:agent_position[1] * 20 + 20] = image
+            agent_position[1] * 20:agent_position[1] * 20 + 20] = image
 
-        obs = self._draw_text(obs, "分值面板", (self.panel_x, self.panel_y))
-        cv2.cvtColor(obs, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('image', obs)
-        cv2.waitKey(300)
+        obs = self._draw_text(obs, "score", (self.panel_x, self.panel_y))
+
+        cv2.imshow('map', obs)
+        cv2.waitKey(1)
+
+    def close(self):
+        pass
+
+
+    def _generate_digit_img(self, num, n):
+        img = np.zeros([n, n, 3], np.uint8)
+        cv2.putText(img, str(num), (0, n), cv2.FONT_HERSHEY_PLAIN, n // 10, (255, 255, 255))
+        # 获取二值矩阵
+        return np.where(img == 0, img, 1)[:, :, 0]
 
     '''
         动作执行之后，重新计算信息素的值
     '''
+
+    def _sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
 
     def _modify_digital_pheromone(self):
         for agent in self.agent_position:
             row = agent[0]
             col = agent[1]
             if self.target_maps[row][col]:
-                self.factor_maps[row][col] += a_1
+                self.factor_maps[row][col] += self.a1
             else:
-                self.factor_maps[row][col] *= b_1
+                self.factor_maps[row][col] *= self.b1
 
     '''
         衰减信息素的值
     '''
 
     def _diffuse_digital_pheromone(self):
-        self.factor_maps *= diffusion_rate
+        self.factor_maps *= self.diffusion_rate
 
     '''
         累加信息素的值
@@ -391,18 +367,17 @@ class EnvFindGoals(object):
                         or col + move_y == 0 or col + move_y == self.cols + 1:
                     continue
 
-                self.factor_maps[row + move_x][col + move_y] += a_1
+                self.factor_maps[row + move_x][col + move_y] += self.a1
 
 
 if __name__ == '__main__':
 
-    agent_count = 10
+    agent_count_c = 10
 
-    env = EnvFindGoals(agent_count=agent_count)
+    env = EnvFindGoals(agent_count=agent_count_c)
     env.reset()
     max_iter = 10000
-    for i in range(max_iter):
-        print("iter= ", i)
-        action_list = np.random.randint(0, 4, agent_count)
-        reward_list, done = env.step(action_list)
+    while True:
+        action_list = np.random.randint(0, 4, agent_count_c)
+        state, reward_list, done = env.step(action_list)
         env.render()
