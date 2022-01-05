@@ -1,17 +1,23 @@
-'''
-Author: your name
-Date: 2021-12-22 16:58:30
-LastEditTime: 2021-12-22 21:35:05
-LastEditors: Please set LastEditors
-Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-FilePath: \irl\src\sirl.py
-'''
+import torch
+import torch.nn as nn
 
 # 定义数据的轮数
 episode = 10
 tmax = 1000
 env = MLGridEnv()
 
+class BehaviorPolicyNN(nn.Module):
+
+    def __init__(self, input_dim, output_dim):
+        nn.Module.__init__(self)
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, 200),
+            nn.ReLU(),
+            nn.Linear(200, output_dim)
+        )
+
+    def forward(self, x):
+        return self.net(x)
 
 def train_evaluation_module():
     # train evaluation module 
@@ -131,3 +137,5 @@ for round in range(episode):
     train_evaluation_module()
     train_behavior_module()
 
+
+#%%

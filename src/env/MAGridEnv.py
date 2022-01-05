@@ -1,3 +1,5 @@
+import random
+
 import numpy as np
 import cv2
 from PIL import ImageDraw, Image
@@ -6,40 +8,49 @@ from src.env.imgs import img
 
 
 class EnvFindGoals(object):
-
     """
     :param agent_count count of agent
     :param map_size size of map
     :param visual_field
     :param a1
     :param a2
+    :param a3
     :param b1
     :param b2
+    :param b3
     :param c1
     :param diffusion_rate
     :param target_shape
     """
+
     def __init__(self,
                  agent_count=4,
                  map_size=(30, 30),
                  visual_field=6,
                  a1=1,
                  a2=1,
+                 a3=1,
                  b1=0.9,
                  b2=0,
+                 b3=0.9,
                  c1=0.25,
+                 p1=0.8,
                  diffusion_rate=0.8,
                  target_shape=2
                  ):
 
+        self.agent_current = None
         self.agent_count = agent_count
         self.agent_position = np.random.randint(1, map_size[0], size=(self.agent_count, 2))
         self.visual_field = visual_field
         self.a1 = a1
         self.a2 = a2
+        self.a3 = a3
         self.b1 = b1
         self.b2 = b2
+        self.b3 = b3
         self.c1 = c1
+        self.p1 = p1
         self.diffusion_rate = diffusion_rate
         self.target_shape = target_shape
         self.rows = map_size[0]
@@ -65,30 +76,62 @@ class EnvFindGoals(object):
 
         return np.array(state_all)
 
-    '''
-        判断指定的智能体的在 x 轴方向能否移动 move_x，在 y 轴方向能够移动 move_y 
-    '''
+    def _can_move_position(self, agent_current_position, move_x, move_y):
+        """
+            判断指定的智能体的在 x 轴方向能否移动 move_x，在 y 轴方向能够移动 move_y
+        """
+        return 0 < agent_current_position[1] + move_x < self.cols + 2 \
+               and 0 < agent_current_position[0] + move_y < self.rows + 2
 
     def _can_move(self, agent, move_x, move_y):
+        """
+            判断指定的智能体的在 x 轴方向能否移动 move_x，在 y 轴方向能够移动 move_y
+        """
         agent_current_position = self.agent_position[agent]
 
         return 0 < agent_current_position[1] + move_x < self.cols + 2 \
                and 0 < agent_current_position[0] + move_y < self.rows + 2
 
-    '''
-        计算 agent 和 attractor 之间的曼哈顿距离
-    '''
-
     def _calculate_d(self, agent_position, attractor_position):
+        """
+            计算 agent 和 attractor 之间的曼哈顿距离
+        """
         distance = np.sum(np.abs(agent_position - attractor_position))
 
         return self.a2 * np.exp(-np.square(distance - self.b2) / 2 * np.square(self.c1))
 
-    '''
-        计算指定智能体的 attractor
-    '''
+    def _attractor_by_agent_position(self, agent_current_position):
+        """
+            计算指定智能体的 attractor
+        """
+        attractor_value = 0
+        attractor_position = np.array([-1, -1])
+
+        # 循环迭代视野范围，寻找最大的 attractor
+        for i in np.arange(-self.visual_field, self.visual_field + 1, 1):
+            for j in np.arange(-self.visual_field, self.visual_field + 1, 1):
+                if np.abs(i) + np.abs(j) <= self.visual_field:
+                    move_x = i
+                    move_y = j
+
+                    is_can_move = self._can_move_position(agent_current_position, move_x, move_y)
+
+                    d = self._calculate_d(agent_current_position, np.array(
+                        [agent_current_position[1] + move_x, agent_current_position[0] + move_y]))
+
+                    if is_can_move and d * self.factor_maps[
+                        agent_current_position[1] + move_x, agent_current_position[0] + move_y] > attractor_value:
+                        attractor_value = self.factor_maps[
+                            agent_current_position[1] + move_x, agent_current_position[0] + move_y]
+                        attractor_position = np.array(
+                            [agent_current_position[1] + move_x, agent_current_position[0] + move_y])
+
+        return attractor_value, attractor_position
 
     def _attractor_by_agent(self, agent):
+        """
+            计算指定智能体的 attractor
+        """
         # 获取当前智能体的位置
         agent_current_position = self.agent_position[agent]
 
@@ -116,10 +159,10 @@ class EnvFindGoals(object):
 
         return attractor_value, attractor_position
 
-    '''
-        获取指定智能体的状态
-    '''
     def _state_by_agent(self, agent):
+        """
+            获取指定智能体的状态
+        """
         # 获取当前智能体的位置
         agent_current_position = self.agent_position[agent]
 
@@ -144,28 +187,24 @@ class EnvFindGoals(object):
 
         return np.array([is_u_ok, is_r_ok, is_d_ok, is_l_ok, relative_x, relative_y, is_h_target])
 
-    '''
-    '''
-
-    def reset(self):
+    def reset(self) -> np.ndarray:
+        maps = np.zeros((self.rows, self.cols))
         factor_maps = np.full_like(self.maps, -1)
         target_maps = self._generate_digit_img(self.target_shape, self.rows)
 
+        self.maps = np.pad(maps, ((1, 1), (1, 1)), mode='constant', constant_values=1)
         self.factor_maps = np.pad(factor_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
         self.target_maps = np.pad(target_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
 
         self.agent_count = np.count_nonzero(target_maps)
         self.agent_position = np.random.randint(1, self.rows, size=(self.agent_count, 2))
 
-        self.agent_current = 0
+        self.agent_current = random.randint(0, self.agent_count - 1)
         self.panel_x = (self.cols + 2) * 20
         self.panel_y = 0
         self.rewards = np.zeros(self.agent_count)
 
         return self._state_by_agent(self.agent_current)
-
-    '''
-    '''
 
     def step_agent(self, agent: np.uint8, action: np.uint8) -> np.uint8:
         rewards = np.zeros(self.agent_count)
@@ -193,11 +232,10 @@ class EnvFindGoals(object):
 
         return rewards, done
 
-    '''
-    '''
-
     def step(self, action_list):
-
+        """
+        :param action_list 动作列表
+        """
         can_actions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
         for i in range(len(action_list)):
             # print(action_list)
@@ -208,26 +246,53 @@ class EnvFindGoals(object):
                 agent[0] = agent[0] + action[0]
                 agent[1] = agent[1] + action[1]
                 self.maps[agent[0]][agent[1]] = 1
-            else:
-                self.rewards[i] -= -10
 
-            if self.target_maps[agent[0]][agent[1]]:
-                self.maps[agent[0]][agent[1]] = 0
-                agent = self.agent_position[i]
-                self.maps[agent[0]][agent[1]] = 1
-                self.rewards[i] += 1
+            # 设置奖励
+            position_pre_x = agent[0] - action[0]
+            position_pre_y = agent[1] - action[1]
+
+            # if self.target_maps[agent[0]][agent[1]] == 0:
+            #     self.rewards[i] = 0
+            # if self.target_maps[position_pre_x][position_pre_y] and \
+            #     self.target_maps[agent[0]][agent[1]]:
+            #     # TODO 休要设置 detal SI
+            #     self.rewards[i] = self.b3 * max(1, 1)
+            # if self.target_maps[position_pre_x][position_pre_y] == 0 and \
+            #     self.target_maps[agent[0]][agent[1]]:
+            #     self.rewards[i] = self.a3
+
+            # if self.target_maps[agent[0]][agent[1]]:
+            #     self.maps[agent[0]][agent[1]] = 0
+            #     agent = self.agent_position[i]
+            #     self.maps[agent[0]][agent[1]] = 1
+            #     self.rewards[i] += 1
 
         self._modify_digital_pheromone()
         self._diffuse_digital_pheromone()
         self._superpose_digital_pheromone()
 
+        for i in range(len(action_list)):
+            action = can_actions[action_list[i]]
+            agent = self.agent_position[i]
+            position_pre_x = agent[0] - action[0]
+            position_pre_y = agent[1] - action[1]
+
+            d1 = self._calculate_d(agent, self._attractor_by_agent_position((position_pre_x, position_pre_y))[1])
+            d2 = self._calculate_d(agent, self._attractor_by_agent(i)[1])
+            distance = d1 - d2
+
+            self.rewards[i] = self.p1 * max(distance, 0)
+
+        self.agent_current = (self.agent_current + 1) % self.agent_count
+
         # self.factor_maps = np.vectorize(self._sigmoid)(self.target_maps)
 
-        done = False
-        if self.rewards[0] > 0:
-            done = True
-        # print(self._state_by_agent(self.agent_current))
-        return self._state_by_agent(self.agent_current), self.rewards[self.agent_current], done, {}
+        done = np.empty(self.agent_count)
+        for index, agent in enumerate(self.agent_position):
+            if self.target_maps[agent[0], agent[1]]:
+                done[index] = True
+
+        return self._state_by_agent(self.agent_current), self.rewards, np.array(done), {}
 
     def _draw_text(self, img, text, position):
         # font = ImageFont.truetype("msyhl.ttc", 15)
@@ -303,7 +368,7 @@ class EnvFindGoals(object):
             # cv2.imread('src/env/imgs/1.png', 1)
             image = img.car
             tmp = obs[agent_position[0] * 20:agent_position[0] * 20 + 20,
-            agent_position[1] * 20:agent_position[1] * 20 + 20]
+                  agent_position[1] * 20:agent_position[1] * 20 + 20]
             image = np.where(image != 0, image, tmp)
             obs[agent_position[0] * 20:agent_position[0] * 20 + 20,
             agent_position[1] * 20:agent_position[1] * 20 + 20] = image
@@ -316,18 +381,16 @@ class EnvFindGoals(object):
     def close(self):
         pass
 
-
     def _generate_digit_img(self, num, n):
         img = np.zeros([n, n, 3], np.uint8)
         cv2.putText(img, str(num), (0, n), cv2.FONT_HERSHEY_PLAIN, n // 10, (255, 255, 255))
         # 获取二值矩阵
         return np.where(img == 0, img, 1)[:, :, 0]
 
-    '''
-        动作执行之后，重新计算信息素的值
-    '''
-
     def _sigmoid(self, x):
+        """
+            动作执行之后，重新计算信息素的值
+        """
         return 1 / (1 + np.exp(-x))
 
     def _modify_digital_pheromone(self):
@@ -339,18 +402,16 @@ class EnvFindGoals(object):
             else:
                 self.factor_maps[row][col] *= self.b1
 
-    '''
-        衰减信息素的值
-    '''
-
     def _diffuse_digital_pheromone(self):
+        """
+            衰减信息素的值
+        """
         self.factor_maps *= self.diffusion_rate
 
-    '''
-        累加信息素的值
-    '''
-
     def _superpose_digital_pheromone(self):
+        """
+            累加信息素的值
+        """
         superpose = [[0, 1], [0, -1], [-1, 0], [1, 0]]
         for i in range(self.agent_count):
             agent = self.agent_position[i]
@@ -378,6 +439,6 @@ if __name__ == '__main__':
     env.reset()
     max_iter = 10000
     while True:
-        action_list = np.random.randint(0, 4, agent_count_c)
-        state, reward_list, done = env.step(action_list)
+        action_list_ = np.random.randint(0, 4, agent_count_c)
+        state, reward_list, done, info = env.step(action_list_)
         env.render()
