@@ -21,6 +21,7 @@ class EnvFindGoals(object):
     :param c1
     :param diffusion_rate
     :param target_shape
+    :param channel_range
     """
 
     def __init__(self,
@@ -36,7 +37,8 @@ class EnvFindGoals(object):
                  c1=0.25,
                  p1=0.8,
                  diffusion_rate=0.8,
-                 target_shape=2
+                 target_shape=2,
+                 channel_range=4
                  ):
 
         self.agent_current = None
@@ -53,6 +55,7 @@ class EnvFindGoals(object):
         self.p1 = p1
         self.diffusion_rate = diffusion_rate
         self.target_shape = target_shape
+        self.channel_range = channel_range
         self.rows = map_size[0]
         self.cols = map_size[1]
 
@@ -204,39 +207,22 @@ class EnvFindGoals(object):
         self.panel_y = 0
         self.rewards = np.zeros(self.agent_count)
 
-        return self._state_by_agent(self.agent_current)
+        return np.array([self._state_by_agent(i) for i in range(self.agent_count)])
 
-    def step_agent(self, agent: np.uint8, action: np.uint8) -> np.uint8:
-        rewards = np.zeros(self.agent_count)
+        # return self._state_by_agent(self.agent_current)
 
-        can_actions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
-        action = can_actions[action]
-        agent = self.agent_position[agent]
-        if self.maps[agent[0] + action[0]][agent[1] + action[1]] == 0:
-            self.maps[agent[0]][agent[1]] = 0
-            agent[0] = agent[0] + action[0]
-            agent[1] = agent[1] + action[1]
-            self.maps[agent[0]][agent[1]] = 1
-        else:
-            rewards[agent] -= 3
+    def step_agent(self, agent: np.uint8, action: np.uint8):
+        actions = np.zeros(self.agent_count, dtype=np.uint8)
+        actions[agent] = action
 
-        if self.target_maps[agent[0]][agent[1]]:
-            self.maps[agent[0]][agent[1]] = 0
-            agent = self.agent_position[agent]
-            self.maps[agent[0]][agent[1]] = 1
-            rewards[agent] += 50
-
-        done = False
-        if rewards[0] > 0:
-            done = True
-
-        return rewards, done
+        state_, rewards, dones, info = self.step(actions)
+        return state_, rewards[agent], dones, info
 
     def step(self, action_list):
         """
         :param action_list 动作列表
         """
-        can_actions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
+        can_actions = np.array([[0, 0], [0, 1], [0, -1], [-1, 0], [1, 0]])
         for i in range(len(action_list)):
             # print(action_list)
             action = can_actions[action_list[i]]
@@ -429,6 +415,20 @@ class EnvFindGoals(object):
                     continue
 
                 self.factor_maps[row + move_x][col + move_y] += self.a1
+
+    def get_neighborhood(self, idx):
+        """
+        获取一个智能体附近的邻居
+        :param idx: 智能体索引
+        :return:    智能体邻居的索引
+        """
+        agent_position = self.agent_position[idx]
+        agent_neighborhoods = []
+        for idx, agent_neighbor_position in enumerate(self.agent_position):
+            distance = np.sum(np.abs(agent_position - agent_neighbor_position))
+            if distance < self.channel_range:
+                agent_neighborhoods.append(idx)
+        return agent_neighborhoods
 
 
 if __name__ == '__main__':

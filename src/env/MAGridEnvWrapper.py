@@ -18,7 +18,7 @@ class GridEnv(gym.Env):
 
     def __init__(self):
         self.agent_count = None
-        self.env = EnvFindGoals(agent_count=1, map_size=(10, 10))
+        self.env = EnvFindGoals(agent_count=1, map_size=(10, 10), channel_range=2)
 
         self.observation_space = np.zeros(7)
         self.action_space = np.zeros(4)
@@ -36,16 +36,26 @@ class GridEnv(gym.Env):
         return obs, rewards, done, info
 
     def reset(self):
-        state = self.env.reset()
+        states = self.env.reset()
         self.agent_count = self.env.agent_count
-        return {
-            "obs": state,
-            "agent_id": self.env.agent_current + 1,
-            "mask": np.full(4, True)
-        }
+        return states
+        # return {
+        #     "obs": state,
+        #     "agent_id": self.env.agent_current + 1,
+        #     "mask": np.full(4, True)
+        # }
 
     def render(self, mode="human"):
         self.env.render()
+
+    def get_state(self, index):
+        return self.env.get_state(index)
+
+    def step_agent(self, idx, action):
+        return self.env.step_agent(idx, action)
+
+    def get_neighborhood(self, idx):
+        return self.env.get_neighborhood(idx)
 
 
 if __name__ == '__main__':

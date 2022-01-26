@@ -1,5 +1,5 @@
 """
-Author: your name
+Author: snowflake
 Date: 2021-12-24 20:29:07
 LastEditTime: 2021-12-24 22:22:33
 LastEditors: Please set LastEditors
@@ -14,7 +14,7 @@ from src.env.MAGridEnvWrapper import GridEnv
 import tianshou as ts
 from tianshou.policy import DQNPolicy, MultiAgentPolicyManager
 from tianshou.data import Collector, VectorReplayBuffer
-from tianshou.trainer import offpolicy_trainer, onpolicy_trainer
+from tianshou.trainer import onpolicy_trainer
 from tianshou.utils.net.common import Net
 
 import numpy as np
