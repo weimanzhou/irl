@@ -37,7 +37,7 @@
     'attention_memory_training': 50,
     'attention_position_wise_mlp_dim': 32,
     'attention_init_gru_gate_bias': 2.0,
-    'attention_use_n_prev_actions': 0,
+    'aptention_use_n_prev_actions': 0,
     'attention_use_n_prev_rewards': 0,
     'framestack': True,
     'dim': 84,

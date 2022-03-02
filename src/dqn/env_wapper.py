@@ -33,7 +33,7 @@ class FireResetEnv(gym.Wrapper):
         """Take action on reset for environments that are fixed until firing."""
         super(FireResetEnv, self).__init__(env)
         assert env.unwrapped.get_action_meanings()[1] == 'FIRE'
-        assert len(env.unwrapped.get_action_meanings()) >= 3
+        assert len(anv.unwrapped.get_action_meanings()) >= 3
 
     def reset(self):
         self.env.reset()

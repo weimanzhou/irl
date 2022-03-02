@@ -1,3 +1,5 @@
+import sys
+sys.path.extend(['C:\\Users\\snowflake\\Documents\\GITHUB\\irl', 'C:/Users/snowflake/Documents/GITHUB/irl'])
 import random
 
 import numpy as np
@@ -20,12 +22,12 @@ class EnvFindGoals(object):
     :param b3
     :param c1
     :param diffusion_rate
-    :param target_shape
     :param channel_range
     """
 
     def __init__(self,
                  agent_count=4,
+                 target_count=4,
                  map_size=(30, 30),
                  visual_field=6,
                  a1=1,
@@ -37,12 +39,12 @@ class EnvFindGoals(object):
                  c1=0.25,
                  p1=0.8,
                  diffusion_rate=0.8,
-                 target_shape=2,
                  channel_range=4
                  ):
 
         self.agent_current = None
         self.agent_count = agent_count
+        self.target_count = target_count
         self.agent_position = np.random.randint(1, map_size[0], size=(self.agent_count, 2))
         self.visual_field = visual_field
         self.a1 = a1
@@ -54,14 +56,14 @@ class EnvFindGoals(object):
         self.c1 = c1
         self.p1 = p1
         self.diffusion_rate = diffusion_rate
-        self.target_shape = target_shape
+        # self.target_shape = target_shape
         self.channel_range = channel_range
         self.rows = map_size[0]
         self.cols = map_size[1]
 
         maps = np.zeros((self.rows, self.cols))
         factor_maps = np.full_like(maps, -1)
-        target_maps = self._generate_digit_img(self.target_shape, self.rows)
+        target_maps = self._generate_digit_img(self.target_count, self.rows)
 
         # target_maps = np.where(target_maps == 1, 1, 0)
 
@@ -193,7 +195,7 @@ class EnvFindGoals(object):
     def reset(self) -> np.ndarray:
         maps = np.zeros((self.rows, self.cols))
         factor_maps = np.full_like(self.maps, -1)
-        target_maps = self._generate_digit_img(self.target_shape, self.rows)
+        target_maps = self._generate_digit_img(self.target_count, self.rows)
 
         self.maps = np.pad(maps, ((1, 1), (1, 1)), mode='constant', constant_values=1)
         self.factor_maps = np.pad(factor_maps, ((1, 1), (1, 1)), mode='constant', constant_values=0)
@@ -215,12 +217,13 @@ class EnvFindGoals(object):
         actions = np.zeros(self.agent_count, dtype=np.uint8)
         actions[agent] = action
 
-        state_, rewards, dones, info = self.step(actions)
-        return state_, rewards[agent], dones, info
+        states_, rewards, dones, info = self.step(actions)
+        info['neighbors'] = self.get_neighborhood(agent)
+        return states_[agent], rewards[agent], dones, info
 
     def step(self, action_list):
         """
-        :param action_list 动作列表
+        :param action_list 动作列表 停，右，左，上，下
         """
         can_actions = np.array([[0, 0], [0, 1], [0, -1], [-1, 0], [1, 0]])
         for i in range(len(action_list)):
@@ -269,16 +272,22 @@ class EnvFindGoals(object):
 
             self.rewards[i] = self.p1 * max(distance, 0)
 
-        self.agent_current = (self.agent_current + 1) % self.agent_count
+        # self.agent_current = (self.agent_current + 1) % self.agent_count
 
         # self.factor_maps = np.vectorize(self._sigmoid)(self.target_maps)
 
-        done = np.empty(self.agent_count)
+        dones = np.empty(self.agent_count)
+        dones_count = 0
         for index, agent in enumerate(self.agent_position):
             if self.target_maps[agent[0], agent[1]]:
-                done[index] = True
+                dones[index] = True
+                dones_count += 1
+        states_ = np.empty((self.agent_count, 7))
+        for index in range(self.agent_count):
+            states_[index, :] = self._state_by_agent(index)
 
-        return self._state_by_agent(self.agent_current), self.rewards, np.array(done), {}
+        return states_, self.rewards, dones, \
+               {"count_total": self.agent_count, "count_done": dones_count}
 
     def _draw_text(self, img, text, position):
         # font = ImageFont.truetype("msyhl.ttc", 15)
@@ -368,10 +377,13 @@ class EnvFindGoals(object):
         pass
 
     def _generate_digit_img(self, num, n):
-        img = np.zeros([n, n, 3], np.uint8)
-        cv2.putText(img, str(num), (0, n), cv2.FONT_HERSHEY_PLAIN, n // 10, (255, 255, 255))
+        img = np.zeros([n, n], np.uint8)
+        targets = np.random.choice(self.rows * self.cols, self.target_count, replace=False)
+        for idx in targets:
+            img[idx // self.rows, idx % self.cols] = 1
+        # cv2.putText(img, str(num), (0, n), cv2.FONT_HERSHEY_PLAIN, n // 10, (255, 255, 255))
         # 获取二值矩阵
-        return np.where(img == 0, img, 1)[:, :, 0]
+        return img #np.where(img == 0, img, 1)[:, :, 0]
 
     def _sigmoid(self, x):
         """
@@ -433,12 +445,17 @@ class EnvFindGoals(object):
 
 if __name__ == '__main__':
 
-    agent_count_c = 10
+    agent_count_c = 4
 
     env = EnvFindGoals(agent_count=agent_count_c)
     env.reset()
     max_iter = 10000
-    while True:
-        action_list_ = np.random.randint(0, 4, agent_count_c)
-        state, reward_list, done, info = env.step(action_list_)
-        env.render()
+
+    for i in range(5):
+        state, reward_list, done, info = env.step_agent(0, i)
+        print(env.agent_position[0])
+
+    # while True:
+    #     action_list_ = np.random.randint(0, 4, agent_count_c)
+    #     state, reward_list, done, info = env.step(action_list_)
+    #     env.render()

@@ -43,7 +43,7 @@ class DQN(nn.Module):
         return self.fc(conv_out)
 
 
-DEFAULT_ENV_NAME = 'PongNoFrameskip-v4'
+DEFAUHT_ENV_NAME = 'PongNoFrameskip-v4'
 MEAN_REWARD_ROUND = 19
 
 GAMMA = 0.9

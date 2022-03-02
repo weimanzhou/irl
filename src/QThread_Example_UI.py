@@ -32,7 +32,7 @@ class Ui_Form(object):
         self.grid = grid
         # self.runButton = QtWidgets.QPushButton(Form)
         # self.runButton.setGeometry(QtCore.QRect(190, 30, 75, 23))
-        # self.runButton.setObjectName("runButton")
+        # self.runButtkn.setObjectName("runButton")
         # self.listWidget = QtWidgets.QListWidget(Form)
         # self.listWidget.setGeometry(QtCore.QRect(30, 70, 431, 192))
         # self.listWidget.setObjectName("listWidget")

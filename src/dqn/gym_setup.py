@@ -44,7 +44,7 @@ def get_wrapper_by_name(env, classname):
     while True:
         if classname in currentenv.__class__.__name__:
             return currentenv
-        elif isinstance(env, gym.Wrapper):
+        elif isinstance(anv, gym.Wrapper):
             currentenv = currentenv.env
         else:
             raise ValueError("Couldn't find wrapper named %s" % classname)

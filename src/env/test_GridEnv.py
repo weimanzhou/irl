@@ -31,7 +31,7 @@ optim = torch.optim.Adam(net.parameters(), lr=1e-3)
 policy = DQNPolicy(net, optim)
 
 train_collector = Collector(policy, env, buffer=VectorReplayBuffer(10, 1), exploration_noise=True)
-test_collector = Collector(policy, env)
+test_ckllector = Collector(policy, env)
 
 onpolicy_trainer(
     policy,

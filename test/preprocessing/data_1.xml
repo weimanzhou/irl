@@ -1,0 +1,1534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2019//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_190101.dtd">
+<root>
+    <PubmedArticle>
+        <MedlineCitation Status="MEDLINE" Owner="NLM">
+            <PMID Version="1">18708588</PMID>
+            <DateCompleted>
+                <Year>2008</Year>
+                <Month>12</Month>
+                <Day>31</Day>
+            </DateCompleted>
+            <DateRevised>
+                <Year>2022</Year>
+                <Month>02</Month>
+                <Day>13</Day>
+            </DateRevised>
+            <Article PubModel="Print-Electronic">
+                <Journal>
+                <ISSN IssnType="Electronic">1530-6860</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>22</Volume>
+                    <Issue>12</Issue>
+                    <PubDate>
+                    <Year>2008</Year>
+                    <Month>Dec</Month>
+                    </PubDate>
+                </JournalIssue>
+                <Title>FASEB journal : official publication of the Federation of American Societies for Experimental Biology</Title>
+                <ISOAbbreviation>FASEB J</ISOAbbreviation>
+                </Journal>
+                <ArticleTitle>NFAT regulates induction of COX-2 and apoptosis of keratinocytes in response to ultraviolet radiation exposure.</ArticleTitle>
+                <Pagination>
+                <MedlinePgn>4218-27</MedlinePgn>
+                </Pagination>
+                <ELocationID EIdType="doi" ValidYN="Y">10.1096/fj.08-113076</ELocationID>
+                <Abstract>
+                <AbstractText>The nuclear factor of activated T cells (NFAT) transcription factors are regulated by calcium/calcineurin signals and play important roles in T cells, muscle, bone, and neural tissue. NFAT is expressed in the epidermis, and although recent data suggest that NFAT is involved in the skin's responses to ultraviolet radiation (UVR), the wavelengths of radiation that activate NFAT and the biological function of UV-activated NFAT remain undefined. We demonstrate that NFAT transcriptional activity is preferentially induced by UVB wavelengths in keratinocytes. The derived action spectrum for NFAT activation indicates that NFAT transcriptional activity is inversely associated with wavelength. UVR also evoked NFAT2 nuclear translocation in a parallel wavelength-dependent fashion and both transcriptional activation and nuclear translocation were inhibited by the calcineurin inhibitor cyclosporin A. UVR also evoked NFAT2 nuclear translocation in three-dimensional skin equivalents. Evidence suggests that COX-2 contributes to UV-induced carcinogenesis. Inhibiting UV-induced NFAT activation in keratinocytes, reduced COX-2 protein induction, and increased UV-induced apoptosis. COX-2 luciferase reporters lacking functional NFAT binding sites were less responsive to UVR, highlighting that NFAT is required for UV-induced COX-2 induction. Taken together, these data suggest that the proinflammatory, antiapoptotic, and procarcinogenic functions of UV-activated COX-2 may be mediated, in part, by upstream NFAT signaling.</AbstractText>
+                </Abstract>
+                <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Flockhart</LastName>
+                    <ForeName>R J</ForeName>
+                    <Initials>RJ</Initials>
+                    <AffiliationInfo>
+                    <Affiliation>Institute of Cellular Medicine, Newcastle University, Framlington Pl., Newcastle upon Tyne NE2 4HH, UK.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Diffey</LastName>
+                    <ForeName>B L</ForeName>
+                    <Initials>BL</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Farr</LastName>
+                    <ForeName>P M</ForeName>
+                    <Initials>PM</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Lloyd</LastName>
+                    <ForeName>J</ForeName>
+                    <Initials>J</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Reynolds</LastName>
+                    <ForeName>N J</ForeName>
+                    <Initials>NJ</Initials>
+                </Author>
+                </AuthorList>
+                <Language>eng</Language>
+                <GrantList CompleteYN="Y">
+                <Grant>
+                    <Acronym>WT_</Acronym>
+                    <Agency>Wellcome Trust</Agency>
+                    <Country>United Kingdom</Country>
+                </Grant>
+                </GrantList>
+                <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+                </PublicationTypeList>
+                <ArticleDate DateType="Electronic">
+                <Year>2008</Year>
+                <Month>08</Month>
+                <Day>15</Day>
+                </ArticleDate>
+            </Article>
+            <MedlineJournalInfo>
+                <Country>United States</Country>
+                <MedlineTA>FASEB J</MedlineTA>
+                <NlmUniqueID>8804484</NlmUniqueID>
+                <ISSNLinking>0892-6638</ISSNLinking>
+            </MedlineJournalInfo>
+            <ChemicalList>
+                <Chemical>
+                <RegistryNumber>0</RegistryNumber>
+                <NameOfSubstance UI="D050778">NFATC Transcription Factors</NameOfSubstance>
+                </Chemical>
+                <Chemical>
+                <RegistryNumber>83HN0GTJ6D</RegistryNumber>
+                <NameOfSubstance UI="D016572">Cyclosporine</NameOfSubstance>
+                </Chemical>
+                <Chemical>
+                <RegistryNumber>EC 1.14.99.1</RegistryNumber>
+                <NameOfSubstance UI="D051546">Cyclooxygenase 2</NameOfSubstance>
+                </Chemical>
+            </ChemicalList>
+            <CitationSubset>IM</CitationSubset>
+            <MeshHeadingList>
+                <MeshHeading>
+                <DescriptorName UI="D002460" MajorTopicYN="N">Cell Line</DescriptorName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D051546" MajorTopicYN="N">Cyclooxygenase 2</DescriptorName>
+                <QualifierName UI="Q000096" MajorTopicYN="Y">biosynthesis</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D016572" MajorTopicYN="N">Cyclosporine</DescriptorName>
+                <QualifierName UI="Q000494" MajorTopicYN="N">pharmacology</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D004790" MajorTopicYN="N">Enzyme Induction</DescriptorName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D015603" MajorTopicYN="N">Keratinocytes</DescriptorName>
+                <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+                <QualifierName UI="Q000201" MajorTopicYN="Y">enzymology</QualifierName>
+                <QualifierName UI="Q000528" MajorTopicYN="Y">radiation effects</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D050778" MajorTopicYN="N">NFATC Transcription Factors</DescriptorName>
+                <QualifierName UI="Q000502" MajorTopicYN="Y">physiology</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D021381" MajorTopicYN="N">Protein Transport</DescriptorName>
+                <QualifierName UI="Q000528" MajorTopicYN="N">radiation effects</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D015533" MajorTopicYN="N">Transcriptional Activation</DescriptorName>
+                <QualifierName UI="Q000528" MajorTopicYN="N">radiation effects</QualifierName>
+                </MeshHeading>
+                <MeshHeading>
+                <DescriptorName UI="D014466" MajorTopicYN="Y">Ultraviolet Rays</DescriptorName>
+                </MeshHeading>
+            </MeshHeadingList>
+        </MedlineCitation>
+        <PubmedData>
+            <History>
+                <PubMedPubDate PubStatus="pubmed">
+                <Year>2008</Year>
+                <Month>8</Month>
+                <Day>19</Day>
+                <Hour>9</Hour>
+                <Minute>0</Minute>
+                </PubMedPubDate>
+                <PubMedPubDate PubStatus="medline">
+                <Year>2009</Year>
+                <Month>1</Month>
+                <Day>1</Day>
+                <Hour>9</Hour>
+                <Minute>0</Minute>
+                </PubMedPubDate>
+                <PubMedPubDate PubStatus="entrez">
+                <Year>2008</Year>
+                <Month>8</Month>
+                <Day>19</Day>
+                <Hour>9</Hour>
+                <Minute>0</Minute>
+                </PubMedPubDate>
+            </History>
+            <PublicationStatus>ppublish</PublicationStatus>
+            <ArticleIdList>
+                <ArticleId IdType="pubmed">18708588</ArticleId>
+                <ArticleId IdType="pii">fj.08-113076</ArticleId>
+                <ArticleId IdType="doi">10.1096/fj.08-113076</ArticleId>
+                <ArticleId IdType="pmc">PMC2671982</ArticleId>
+            </ArticleIdList>
+            <ReferenceList>
+                <Reference>
+                <Citation>Cell. 1998 May 29;93(5):851-61</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9630228</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Nature. 1994 Jun 9;369(6480):497-502</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">8202141</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Carcinog. 2007 May;46(5):354-62</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">17238138</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Oncogene. 2001 Aug 23;20(37):5164-72</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11526505</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Cell Biol. 1996 Jul;16(7):3945-54</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">8668212</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Endocr Pathol. 2005 Winter;16(4):253-77</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16627914</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Invest Dermatol. 2002 May;118(5):779-88</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11982754</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Genes Dev. 2003 Sep 15;17(18):2205-32</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12975316</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Cell Biol. 1995 May;15(5):2697-706</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">7739550</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Photochem Photobiol Sci. 2004 Mar;3(3):257-62</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">14993941</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Clin Transpl. 1998;:147-58</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10503093</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Immunity. 1995 May;2(5):461-72</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">7749981</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2005 Jan 28;280(4):2818-25</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15537643</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2006 May 5;281(18):12210-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16505480</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Exp Med. 1998 Aug 3;188(3):527-37</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9687530</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Cell Biol. 2004 May;24(10):4184-95</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15121840</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Cancer Res. 2001 Jun 1;61(11):4329-32</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11389054</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Trends Cardiovasc Med. 2003 Feb;13(2):56-62</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12586440</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>FEBS Lett. 2006 Dec 11;580(28-29):6533-6</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">17113084</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Nat Cell Biol. 2002 Jul;4(7):540-4</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12080349</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Carcinog. 1999 Aug;25(4):231-40</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10449029</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Proc Natl Acad Sci U S A. 2005 Jan 18;102(3):868-73</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15644446</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Oncogene. 2001 Apr 30;20(19):2476-89</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11402342</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Int J Biol Markers. 1998 Apr-Jun;13(2):51-69</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9803353</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Br J Dermatol. 1991 May;124(5):443-8</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">2039720</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Science. 1997 Mar 28;275(5308):1930-4</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9072970</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Biol Cell. 1998 Oct;9(10):2905-16</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9763451</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Proc Natl Acad Sci U S A. 2001 Aug 14;98(17):9575-80</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11493684</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Science. 1988 Jul 8;241(4862):202-5</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">3260404</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Cancer Invest. 2004;22(2):271-82</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15199610</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Am J Physiol Cell Physiol. 2002 Aug;283(2):C545-51</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12107064</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Immunol. 1999 Sep 15;163(6):3459-67</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10477618</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Int J Dermatol. 1984 Dec;23(10):633-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">6526556</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Dev Cell. 2005 May;8(5):665-76</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15866158</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Cancer Metastasis Rev. 2004 Jan-Jun;23(1-2):63-75</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15000150</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Free Radic Biol Med. 2005 Dec 15;39(12):1629-37</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16298688</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Cell Biol. 2002 Mar 4;156(5):771-4</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">11877454</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Crit Rev Oncol Hematol. 2006 Jul;59(1):51-64</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16531064</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Dev Biol. 2004 Feb 1;266(1):1-16</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">14729474</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Proc Natl Acad Sci U S A. 1999 Jun 22;96(13):7214-9</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10377394</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Proc Natl Acad Sci U S A. 1999 Mar 2;96(5):2538-42</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10051678</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Methods. 2002 Sep;28(1):4-13</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12231182</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Proc Natl Acad Sci U S A. 1974 Sep;71(9):3363-6</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">4530308</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Toxicol Appl Pharmacol. 2004 Mar 15;195(3):288-97</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">15020191</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Circ Res. 2003 Apr 18;92(7):725-31</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12663489</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Oncogene. 2007 Feb 15;26(7):958-69</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16909108</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Toxicology. 2003 Jul 15;189(1-2):21-39</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12821280</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2000 Mar 31;275(13):9143-9</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10734048</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Immunol. 1997 Dec 1;159(11):5431-40</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9548483</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2000 Aug 4;275(31):23627-35</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10816557</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Cell Cycle. 2007 Jan 1;6(1):16-9</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">17245111</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Immunity. 2000 Apr;12(4):359-72</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10795734</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Transplant Proc. 1998 Aug;30(5):2055-7</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9723391</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Mol Cell Biol. 1997 May;17(5):2475-84</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9111316</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Science. 1993 Oct 29;262(5134):750-4</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">8235597</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2003 May 9;278(19):17246-54</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">12598522</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Cancer Res. 1993 Jan 1;53(1):53-60</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">8416751</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Exp Med. 2005 Nov 7;202(9):1261-9</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16275763</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Invest Dermatol. 1981 May;76(5):359-62</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">7229428</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Carcinogenesis. 1998 May;19(5):723-9</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9635856</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Invest Dermatol. 2005 Nov;125(5):1020-5</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16297204</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Clin Dermatol. 1998 Jan-Feb;16(1):59-65</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">9472434</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>J Biol Chem. 2006 Aug 25;281(34):24405-13</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">16809336</ArticleId>
+                </ArticleIdList>
+                </Reference>
+                <Reference>
+                <Citation>Nature. 1999 Oct 14;401(6754):703-8</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="pubmed">10537109</ArticleId>
+                </ArticleIdList>
+                </Reference>
+            </ReferenceList>
+        </PubmedData>
+    </PubmedArticle>
+    <PubmedArticle>
+        <MedlineCitation Status="MEDLINE" Owner="NLM">
+            <PMID Version="1">14584002</PMID>
+            <DateCompleted>
+            <Year>2004</Year>
+            <Month>05</Month>
+            <Day>04</Day>
+            </DateCompleted>
+            <DateRevised>
+            <Year>2022</Year>
+            <Month>02</Month>
+            <Day>13</Day>
+            </DateRevised>
+            <Article PubModel="Print">
+            <Journal>
+                <ISSN IssnType="Electronic">1469-493X</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Issue>4</Issue>
+                    <PubDate>
+                        <Year>2003</Year>
+                    </PubDate>
+                </JournalIssue>
+                <Title>The Cochrane database of systematic reviews</Title>
+                <ISOAbbreviation>Cochrane Database Syst Rev</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Intravenous immunoglobulin for the treatment of Kawasaki disease in children.</ArticleTitle>
+        <Pagination>
+            <MedlinePgn>CD004000</MedlinePgn>
+        </Pagination>
+        <Abstract>
+            <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Kawasaki disease is the most common cause of acquired heart disease in children in developed countries. The coronary arteries supplying the heart can be damaged in Kawasaki disease. The principal advantage of timely diagnosis is the potential to prevent this complication with early treatment. Intravenous immunoglobulin (IVIG) is widely used for this purpose.</AbstractText>
+            <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">The objective of this review was to evaluate the effectiveness of IVIG in treating, and preventing cardiac consequences, of Kawasaki disease in children.</AbstractText>
+            <AbstractText Label="SEARCH STRATEGY" NlmCategory="METHODS">Electronic searches of the Cochrane Peripheral Vascular Disease Group Specialised Register, CENTRAL, MEDLINE, EMBASE, and CINAHL were performed (last searched April 2003). We also searched references from relevant articles and contacted authors where necessary. In addition we contacted experts in the field for unpublished works.</AbstractText>
+            <AbstractText Label="SELECTION CRITERIA" NlmCategory="METHODS">Randomised controlled trials of intravenous immunoglobulin to treat Kawasaki disease were eligible for inclusion.</AbstractText>
+            <AbstractText Label="DATA COLLECTION AND ANALYSIS" NlmCategory="METHODS">Fifty-nine trials were identified in the initial search. On careful inspection only sixteen of these met all the inclusion criteria. Trials were data extracted and assessed for quality by at least two reviewers. Data were combined for meta-analysis using relative risk ratios for dichotomous data or weighted mean difference for continuous data. A random effects statistical model was used.</AbstractText>
+            <AbstractText Label="MAIN RESULTS" NlmCategory="RESULTS">The meta-analysis of IVIG versus placebo, including all children, showed a significant decrease in new coronary artery abnormalities (CAAs) in favour of IVIG, at thirty days RR (95% CI) = 0.74 (0.61 to 0.90). No statistically significant difference was found thereafter. A subgroup analysis excluding children with CAAs at enrollment also found a significant reduction of new CAAs in children receiving IVIG RR (95%) = 0.67 (0.46 to 1.00). There was a trend towards benefit from IVIG at sixty days (p=0.06). Results of dose comparisons showed a decrease in the number of new CAAs with increased dose. The meta-analysis of 400 mg/kg/day for five days versus 2 gm/kg in a single dose showed statistically significant reduction in CAAs at thirty days RR (95%) = 4.47 (1.55 to 12.86). This comparison also showed a significant reduction in duration of fever with the higher dose. There was no statistically significant difference noted between different preparations of IVIG. There was no statistically significant difference of adverse effects in any group.</AbstractText>
+            <AbstractText Label="REVIEWER'S CONCLUSIONS" NlmCategory="CONCLUSIONS">Children fulfilling the diagnostic criteria for Kawasaki disease should be treated with IVIG (2 gm/kg single dose) within 10 days of onset of symptoms.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+            <Author ValidYN="Y">
+            <LastName>Oates-Whitehead</LastName>
+            <ForeName>R M</ForeName>
+            <Initials>RM</Initials>
+            <AffiliationInfo>
+                <Affiliation>Research Division, Royal College of Paediatrics, 50 Hallam Street, London, UK, W1W 6DE.</Affiliation>
+            </AffiliationInfo>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Baumer</LastName>
+            <ForeName>J H</ForeName>
+            <Initials>JH</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Haines</LastName>
+            <ForeName>L</ForeName>
+            <Initials>L</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Love</LastName>
+            <ForeName>S</ForeName>
+            <Initials>S</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Maconochie</LastName>
+            <ForeName>I K</ForeName>
+            <Initials>IK</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Gupta</LastName>
+            <ForeName>A</ForeName>
+            <Initials>A</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Roman</LastName>
+            <ForeName>K</ForeName>
+            <Initials>K</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Dua</LastName>
+            <ForeName>J S</ForeName>
+            <Initials>JS</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Flynn</LastName>
+            <ForeName>I</ForeName>
+            <Initials>I</Initials>
+            </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+            <PublicationType UI="D016428">Journal Article</PublicationType>
+            <PublicationType UI="D017418">Meta-Analysis</PublicationType>
+            <PublicationType UI="D016454">Review</PublicationType>
+            <PublicationType UI="D000078182">Systematic Review</PublicationType>
+        </PublicationTypeList>
+        </Article>
+        <MedlineJournalInfo>
+        <Country>England</Country>
+        <MedlineTA>Cochrane Database Syst Rev</MedlineTA>
+        <NlmUniqueID>100909747</NlmUniqueID>
+        <ISSNLinking>1361-6137</ISSNLinking>
+        </MedlineJournalInfo>
+        <ChemicalList>
+        <Chemical>
+            <RegistryNumber>0</RegistryNumber>
+            <NameOfSubstance UI="D016756">Immunoglobulins, Intravenous</NameOfSubstance>
+        </Chemical>
+        </ChemicalList>
+        <CitationSubset>IM</CitationSubset>
+        <MeshHeadingList>
+        <MeshHeading>
+            <DescriptorName UI="D002648" MajorTopicYN="N">Child</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D016756" MajorTopicYN="N">Immunoglobulins, Intravenous</DescriptorName>
+            <QualifierName UI="Q000627" MajorTopicYN="Y">therapeutic use</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D009080" MajorTopicYN="N">Mucocutaneous Lymph Node Syndrome</DescriptorName>
+            <QualifierName UI="Q000628" MajorTopicYN="Y">therapy</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D016032" MajorTopicYN="N">Randomized Controlled Trials as Topic</DescriptorName>
+        </MeshHeading>
+        </MeshHeadingList>
+        <NumberOfReferences>90</NumberOfReferences>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+        <PubMedPubDate PubStatus="pubmed">
+            <Year>2003</Year>
+            <Month>10</Month>
+            <Day>30</Day>
+            <Hour>5</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+            <Year>2004</Year>
+            <Month>5</Month>
+            <Day>5</Day>
+            <Hour>5</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+            <Year>2003</Year>
+            <Month>10</Month>
+            <Day>30</Day>
+            <Hour>5</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+        <ArticleId IdType="pubmed">14584002</ArticleId>
+        <ArticleId IdType="doi">10.1002/14651858.CD004000</ArticleId>
+        <ArticleId IdType="pmc">PMC6544780</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+    </PubmedArticle>
+    <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">17652069</PMID>
+        <DateCompleted>
+        <Year>2008</Year>
+        <Month>03</Month>
+        <Day>24</Day>
+        </DateCompleted>
+        <DateRevised>
+        <Year>2022</Year>
+        <Month>02</Month>
+        <Day>13</Day>
+        </DateRevised>
+        <Article PubModel="Print">
+        <Journal>
+            <ISSN IssnType="Print">0962-8436</ISSN>
+            <JournalIssue CitedMedium="Print">
+            <Volume>363</Volume>
+            <Issue>1491</Issue>
+            <PubDate>
+                <Year>2008</Year>
+                <Month>Feb</Month>
+                <Day>12</Day>
+            </PubDate>
+            </JournalIssue>
+            <Title>Philosophical transactions of the Royal Society of London. Series B, Biological sciences</Title>
+            <ISOAbbreviation>Philos Trans R Soc Lond B Biol Sci</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Optimizing nutrient management for farm systems.</ArticleTitle>
+        <Pagination>
+            <MedlinePgn>667-80</MedlinePgn>
+        </Pagination>
+        <Abstract>
+            <AbstractText>Increasing the inputs of nutrients has played a major role in increasing the supply of food to a continually growing world population. However, focusing attention on the most important nutrients, such as nitrogen (N), has in some cases led to nutrient imbalances, some excess applications especially of N, inefficient use and large losses to the environment with impacts on air and water quality, biodiversity and human health. In contrast, food exports from the developing to the developed world are depleting soils of nutrients in some countries. Better management of all essential nutrients is required that delivers sustainable agriculture and maintains the necessary increases in food production while minimizing waste, economic loss and environmental impacts. More extensive production systems typified by 'organic farming' may prove to be sustainable. However, for most of the developed world, and in the developing world where an ever-growing population demands more food, it will be essential to increase the efficiency of nutrient use in conventional systems. Nutrient management on farms is under the control of the land manger, the most effective of whom will already use various decision supports for calculating rates of application to achieve various production targets. Increasingly, land managers will need to conform to good practice to achieve production targets and to conform to environmental targets as well.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+            <Author ValidYN="Y">
+            <LastName>Goulding</LastName>
+            <ForeName>Keith</ForeName>
+            <Initials>K</Initials>
+            <AffiliationInfo>
+                <Affiliation>BBSRC Cross-Institute Programme for Sustainable Soil Function, Rothamsted Research, Harpenden, Hertfordshire AL5 2JQ, UK. keith.goulding@bbsrc.ac.uk</Affiliation>
+            </AffiliationInfo>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Jarvis</LastName>
+            <ForeName>Steve</ForeName>
+            <Initials>S</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Whitmore</LastName>
+            <ForeName>Andy</ForeName>
+            <Initials>A</Initials>
+            </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <GrantList CompleteYN="Y">
+            <Grant>
+            <GrantID>BBS/E/C/00004169</GrantID>
+            <Acronym>BB_</Acronym>
+            <Agency>Biotechnology and Biological Sciences Research Council</Agency>
+            <Country>United Kingdom</Country>
+            </Grant>
+            <Grant>
+            <GrantID>BBS/E/C/00004171</GrantID>
+            <Acronym>BB_</Acronym>
+            <Agency>Biotechnology and Biological Sciences Research Council</Agency>
+            <Country>United Kingdom</Country>
+            </Grant>
+            <Grant>
+            <GrantID>BBS/E/C/00004671</GrantID>
+            <Acronym>BB_</Acronym>
+            <Agency>Biotechnology and Biological Sciences Research Council</Agency>
+            <Country>United Kingdom</Country>
+            </Grant>
+        </GrantList>
+        <PublicationTypeList>
+            <PublicationType UI="D016428">Journal Article</PublicationType>
+            <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+            <PublicationType UI="D016454">Review</PublicationType>
+        </PublicationTypeList>
+        </Article>
+        <MedlineJournalInfo>
+        <Country>England</Country>
+        <MedlineTA>Philos Trans R Soc Lond B Biol Sci</MedlineTA>
+        <NlmUniqueID>7503623</NlmUniqueID>
+        <ISSNLinking>0962-8436</ISSNLinking>
+        </MedlineJournalInfo>
+        <ChemicalList>
+        <Chemical>
+            <RegistryNumber>N762921K75</RegistryNumber>
+            <NameOfSubstance UI="D009584">Nitrogen</NameOfSubstance>
+        </Chemical>
+        </ChemicalList>
+        <CitationSubset>IM</CitationSubset>
+        <MeshHeadingList>
+        <MeshHeading>
+            <DescriptorName UI="D000383" MajorTopicYN="N">Agriculture</DescriptorName>
+            <QualifierName UI="Q000379" MajorTopicYN="Y">methods</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D000822" MajorTopicYN="N">Animal Husbandry</DescriptorName>
+            <QualifierName UI="Q000379" MajorTopicYN="Y">methods</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D000818" MajorTopicYN="N">Animals</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D044822" MajorTopicYN="N">Biodiversity</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D003247" MajorTopicYN="Y">Conservation of Natural Resources</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D004777" MajorTopicYN="Y">Environment</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D004787" MajorTopicYN="N">Environmental Pollution</DescriptorName>
+            <QualifierName UI="Q000517" MajorTopicYN="N">prevention &amp; control</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D005523" MajorTopicYN="N">Food Supply</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D009584" MajorTopicYN="N">Nitrogen</DescriptorName>
+            <QualifierName UI="Q000378" MajorTopicYN="Y">metabolism</QualifierName>
+        </MeshHeading>
+        </MeshHeadingList>
+        <NumberOfReferences>97</NumberOfReferences>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+        <PubMedPubDate PubStatus="pubmed">
+            <Year>2007</Year>
+            <Month>7</Month>
+            <Day>27</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+            <Year>2008</Year>
+            <Month>3</Month>
+            <Day>25</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+            <Year>2007</Year>
+            <Month>7</Month>
+            <Day>27</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+        <ArticleId IdType="pubmed">17652069</ArticleId>
+        <ArticleId IdType="pii">86UK3387894T7215</ArticleId>
+        <ArticleId IdType="doi">10.1098/rstb.2007.2177</ArticleId>
+        <ArticleId IdType="pmc">PMC2610177</ArticleId>
+        </ArticleIdList>
+        <ReferenceList>
+        <Reference>
+            <Citation>Ambio. 2005 Jun;34(4-5):283-7</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16092257</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Rev Sci Tech. 2002 Dec;21(3):675-87</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12523706</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Environ Qual. 2005 Jan-Feb;34(1):149-55</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15647544</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Environ Qual. 2004 May-Jun;33(3):816-24</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15224915</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Ambio. 2002 Mar;31(2):126-31</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12078001</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Rapid Commun Mass Spectrom. 2003;17(22):2550-6</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">14608627</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Science. 1998 Oct 30;282(5390):893-6</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9794751</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>ScientificWorldJournal. 2001 Oct 30;1 Suppl 2:920-6</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12805892</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Exp Bot. 2005 Jul;56(417):1699-709</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15939733</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Environ Toxicol Chem. 2004 Nov;23(11):2665-72</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15559282</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Ambio. 2002 Mar;31(2):60-3</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12078010</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Nature. 2001 May 17;411(6835):258</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11357117</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        </ReferenceList>
+    </PubmedData>
+    </PubmedArticle>
+    <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">18708588</PMID>
+        <DateCompleted>
+        <Year>2008</Year>
+        <Month>12</Month>
+        <Day>31</Day>
+        </DateCompleted>
+        <DateRevised>
+        <Year>2022</Year>
+        <Month>02</Month>
+        <Day>13</Day>
+        </DateRevised>
+        <Article PubModel="Print-Electronic">
+        <Journal>
+            <ISSN IssnType="Electronic">1530-6860</ISSN>
+            <JournalIssue CitedMedium="Internet">
+            <Volume>22</Volume>
+            <Issue>12</Issue>
+            <PubDate>
+                <Year>2008</Year>
+                <Month>Dec</Month>
+            </PubDate>
+            </JournalIssue>
+            <Title>FASEB journal : official publication of the Federation of American Societies for Experimental Biology</Title>
+            <ISOAbbreviation>FASEB J</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>NFAT regulates induction of COX-2 and apoptosis of keratinocytes in response to ultraviolet radiation exposure.</ArticleTitle>
+        <Pagination>
+            <MedlinePgn>4218-27</MedlinePgn>
+        </Pagination>
+        <ELocationID EIdType="doi" ValidYN="Y">10.1096/fj.08-113076</ELocationID>
+        <Abstract>
+            <AbstractText>The nuclear factor of activated T cells (NFAT) transcription factors are regulated by calcium/calcineurin signals and play important roles in T cells, muscle, bone, and neural tissue. NFAT is expressed in the epidermis, and although recent data suggest that NFAT is involved in the skin's responses to ultraviolet radiation (UVR), the wavelengths of radiation that activate NFAT and the biological function of UV-activated NFAT remain undefined. We demonstrate that NFAT transcriptional activity is preferentially induced by UVB wavelengths in keratinocytes. The derived action spectrum for NFAT activation indicates that NFAT transcriptional activity is inversely associated with wavelength. UVR also evoked NFAT2 nuclear translocation in a parallel wavelength-dependent fashion and both transcriptional activation and nuclear translocation were inhibited by the calcineurin inhibitor cyclosporin A. UVR also evoked NFAT2 nuclear translocation in three-dimensional skin equivalents. Evidence suggests that COX-2 contributes to UV-induced carcinogenesis. Inhibiting UV-induced NFAT activation in keratinocytes, reduced COX-2 protein induction, and increased UV-induced apoptosis. COX-2 luciferase reporters lacking functional NFAT binding sites were less responsive to UVR, highlighting that NFAT is required for UV-induced COX-2 induction. Taken together, these data suggest that the proinflammatory, antiapoptotic, and procarcinogenic functions of UV-activated COX-2 may be mediated, in part, by upstream NFAT signaling.</AbstractText>
+        </Abstract>
+        <AuthorList CompleteYN="Y">
+            <Author ValidYN="Y">
+            <LastName>Flockhart</LastName>
+            <ForeName>R J</ForeName>
+            <Initials>RJ</Initials>
+            <AffiliationInfo>
+                <Affiliation>Institute of Cellular Medicine, Newcastle University, Framlington Pl., Newcastle upon Tyne NE2 4HH, UK.</Affiliation>
+            </AffiliationInfo>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Diffey</LastName>
+            <ForeName>B L</ForeName>
+            <Initials>BL</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Farr</LastName>
+            <ForeName>P M</ForeName>
+            <Initials>PM</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Lloyd</LastName>
+            <ForeName>J</ForeName>
+            <Initials>J</Initials>
+            </Author>
+            <Author ValidYN="Y">
+            <LastName>Reynolds</LastName>
+            <ForeName>N J</ForeName>
+            <Initials>NJ</Initials>
+            </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <GrantList CompleteYN="Y">
+            <Grant>
+            <Acronym>WT_</Acronym>
+            <Agency>Wellcome Trust</Agency>
+            <Country>United Kingdom</Country>
+            </Grant>
+        </GrantList>
+        <PublicationTypeList>
+            <PublicationType UI="D016428">Journal Article</PublicationType>
+            <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+        </PublicationTypeList>
+        <ArticleDate DateType="Electronic">
+            <Year>2008</Year>
+            <Month>08</Month>
+            <Day>15</Day>
+        </ArticleDate>
+        </Article>
+        <MedlineJournalInfo>
+        <Country>United States</Country>
+        <MedlineTA>FASEB J</MedlineTA>
+        <NlmUniqueID>8804484</NlmUniqueID>
+        <ISSNLinking>0892-6638</ISSNLinking>
+        </MedlineJournalInfo>
+        <ChemicalList>
+        <Chemical>
+            <RegistryNumber>0</RegistryNumber>
+            <NameOfSubstance UI="D050778">NFATC Transcription Factors</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+            <RegistryNumber>83HN0GTJ6D</RegistryNumber>
+            <NameOfSubstance UI="D016572">Cyclosporine</NameOfSubstance>
+        </Chemical>
+        <Chemical>
+            <RegistryNumber>EC 1.14.99.1</RegistryNumber>
+            <NameOfSubstance UI="D051546">Cyclooxygenase 2</NameOfSubstance>
+        </Chemical>
+        </ChemicalList>
+        <CitationSubset>IM</CitationSubset>
+        <MeshHeadingList>
+        <MeshHeading>
+            <DescriptorName UI="D002460" MajorTopicYN="N">Cell Line</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D051546" MajorTopicYN="N">Cyclooxygenase 2</DescriptorName>
+            <QualifierName UI="Q000096" MajorTopicYN="Y">biosynthesis</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D016572" MajorTopicYN="N">Cyclosporine</DescriptorName>
+            <QualifierName UI="Q000494" MajorTopicYN="N">pharmacology</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D004790" MajorTopicYN="N">Enzyme Induction</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D015603" MajorTopicYN="N">Keratinocytes</DescriptorName>
+            <QualifierName UI="Q000187" MajorTopicYN="N">drug effects</QualifierName>
+            <QualifierName UI="Q000201" MajorTopicYN="Y">enzymology</QualifierName>
+            <QualifierName UI="Q000528" MajorTopicYN="Y">radiation effects</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D050778" MajorTopicYN="N">NFATC Transcription Factors</DescriptorName>
+            <QualifierName UI="Q000502" MajorTopicYN="Y">physiology</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D021381" MajorTopicYN="N">Protein Transport</DescriptorName>
+            <QualifierName UI="Q000528" MajorTopicYN="N">radiation effects</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D015533" MajorTopicYN="N">Transcriptional Activation</DescriptorName>
+            <QualifierName UI="Q000528" MajorTopicYN="N">radiation effects</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+            <DescriptorName UI="D014466" MajorTopicYN="Y">Ultraviolet Rays</DescriptorName>
+        </MeshHeading>
+        </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+        <PubMedPubDate PubStatus="pubmed">
+            <Year>2008</Year>
+            <Month>8</Month>
+            <Day>19</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+            <Year>2009</Year>
+            <Month>1</Month>
+            <Day>1</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+            <Year>2008</Year>
+            <Month>8</Month>
+            <Day>19</Day>
+            <Hour>9</Hour>
+            <Minute>0</Minute>
+        </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+        <ArticleId IdType="pubmed">18708588</ArticleId>
+        <ArticleId IdType="pii">fj.08-113076</ArticleId>
+        <ArticleId IdType="doi">10.1096/fj.08-113076</ArticleId>
+        <ArticleId IdType="pmc">PMC2671982</ArticleId>
+        </ArticleIdList>
+        <ReferenceList>
+        <Reference>
+            <Citation>Cell. 1998 May 29;93(5):851-61</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9630228</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Nature. 1994 Jun 9;369(6480):497-502</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">8202141</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Carcinog. 2007 May;46(5):354-62</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">17238138</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Oncogene. 2001 Aug 23;20(37):5164-72</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11526505</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Cell Biol. 1996 Jul;16(7):3945-54</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">8668212</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Endocr Pathol. 2005 Winter;16(4):253-77</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16627914</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Invest Dermatol. 2002 May;118(5):779-88</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11982754</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Genes Dev. 2003 Sep 15;17(18):2205-32</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12975316</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Cell Biol. 1995 May;15(5):2697-706</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">7739550</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Photochem Photobiol Sci. 2004 Mar;3(3):257-62</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">14993941</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Clin Transpl. 1998;:147-58</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10503093</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Immunity. 1995 May;2(5):461-72</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">7749981</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2005 Jan 28;280(4):2818-25</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15537643</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2006 May 5;281(18):12210-7</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16505480</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Exp Med. 1998 Aug 3;188(3):527-37</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9687530</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Cell Biol. 2004 May;24(10):4184-95</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15121840</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Cancer Res. 2001 Jun 1;61(11):4329-32</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11389054</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Trends Cardiovasc Med. 2003 Feb;13(2):56-62</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12586440</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>FEBS Lett. 2006 Dec 11;580(28-29):6533-6</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">17113084</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Nat Cell Biol. 2002 Jul;4(7):540-4</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12080349</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Carcinog. 1999 Aug;25(4):231-40</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10449029</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Proc Natl Acad Sci U S A. 2005 Jan 18;102(3):868-73</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15644446</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Oncogene. 2001 Apr 30;20(19):2476-89</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11402342</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Int J Biol Markers. 1998 Apr-Jun;13(2):51-69</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9803353</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Br J Dermatol. 1991 May;124(5):443-8</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">2039720</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Science. 1997 Mar 28;275(5308):1930-4</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9072970</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Biol Cell. 1998 Oct;9(10):2905-16</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9763451</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Proc Natl Acad Sci U S A. 2001 Aug 14;98(17):9575-80</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11493684</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Science. 1988 Jul 8;241(4862):202-5</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">3260404</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Cancer Invest. 2004;22(2):271-82</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15199610</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Am J Physiol Cell Physiol. 2002 Aug;283(2):C545-51</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12107064</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Immunol. 1999 Sep 15;163(6):3459-67</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10477618</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Int J Dermatol. 1984 Dec;23(10):633-7</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">6526556</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Dev Cell. 2005 May;8(5):665-76</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15866158</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Cancer Metastasis Rev. 2004 Jan-Jun;23(1-2):63-75</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15000150</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Free Radic Biol Med. 2005 Dec 15;39(12):1629-37</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16298688</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Cell Biol. 2002 Mar 4;156(5):771-4</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">11877454</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Crit Rev Oncol Hematol. 2006 Jul;59(1):51-64</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16531064</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Dev Biol. 2004 Feb 1;266(1):1-16</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">14729474</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Proc Natl Acad Sci U S A. 1999 Jun 22;96(13):7214-9</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10377394</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Proc Natl Acad Sci U S A. 1999 Mar 2;96(5):2538-42</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10051678</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Methods. 2002 Sep;28(1):4-13</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12231182</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Proc Natl Acad Sci U S A. 1974 Sep;71(9):3363-6</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">4530308</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Toxicol Appl Pharmacol. 2004 Mar 15;195(3):288-97</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">15020191</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Circ Res. 2003 Apr 18;92(7):725-31</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12663489</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Oncogene. 2007 Feb 15;26(7):958-69</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16909108</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Toxicology. 2003 Jul 15;189(1-2):21-39</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12821280</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2000 Mar 31;275(13):9143-9</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10734048</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Immunol. 1997 Dec 1;159(11):5431-40</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9548483</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2000 Aug 4;275(31):23627-35</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10816557</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Cell Cycle. 2007 Jan 1;6(1):16-9</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">17245111</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Immunity. 2000 Apr;12(4):359-72</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10795734</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Transplant Proc. 1998 Aug;30(5):2055-7</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9723391</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Mol Cell Biol. 1997 May;17(5):2475-84</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9111316</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Science. 1993 Oct 29;262(5134):750-4</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">8235597</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2003 May 9;278(19):17246-54</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">12598522</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Cancer Res. 1993 Jan 1;53(1):53-60</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">8416751</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Exp Med. 2005 Nov 7;202(9):1261-9</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16275763</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Invest Dermatol. 1981 May;76(5):359-62</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">7229428</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Carcinogenesis. 1998 May;19(5):723-9</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9635856</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Invest Dermatol. 2005 Nov;125(5):1020-5</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16297204</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Clin Dermatol. 1998 Jan-Feb;16(1):59-65</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">9472434</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>J Biol Chem. 2006 Aug 25;281(34):24405-13</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">16809336</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        <Reference>
+            <Citation>Nature. 1999 Oct 14;401(6754):703-8</Citation>
+            <ArticleIdList>
+            <ArticleId IdType="pubmed">10537109</ArticleId>
+            </ArticleIdList>
+        </Reference>
+        </ReferenceList>
+    </PubmedData>
+    </PubmedArticle>
+</root>

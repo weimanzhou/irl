@@ -33,7 +33,7 @@ def get_agents():
     agents = []
     for i in range(agent_count):
         net = Net(np.prod(observation_shape), np.prod(action_shape), hidden_sizes=[64, 64])
-        optim = torch.optim.Adam(net.parameters(), lr=1e-3)
+        optim = torch.optim.Adam(net.parametars(), lr=1e-3)
         policy = DQNPolicy(net, optim)
         agents.append(policy)
     return MultiAgentPolicyManager(agents)

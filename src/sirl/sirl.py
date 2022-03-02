@@ -1,12 +1,16 @@
+import sys
+sys.path.extend(['C:\\Users\\snowflake\\Documents\\GITHUB\\irl', 'C:/Users/snowflake/Documents/GITHUB/irl'])
+import time
+
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as f
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 
 from src.env.MAGridEnvWrapper import GridEnv
 
-writer = SummaryWriter()
+# writer = SummaryWriter()
 
 
 class BehaviorPolicyNN(nn.Module):
@@ -41,7 +45,7 @@ class EvaluationValueNN(nn.Module):
         super(EvaluationValueNN, self).__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, 128),
-            nn.ReLU(),
+            nn.ReLU(),	
             nn.Linear(128, 1)
         )
 
@@ -72,7 +76,7 @@ class BehaviorModule(nn.Module):
             nn.ReLU(),
             nn.Linear(128, 1)
         )
-
+        self.b_n_.load_state_dict(self.b_n.state_dict())
         self.gamma1 = 0.9
 
         self.distribution = torch.distributions.Categorical
@@ -162,6 +166,7 @@ class EvaluationModule(nn.Module):
             nn.ReLU(),
             nn.Linear(128, 1)
         )
+        self.e_n_.load_state_dict(self.e_n.state_dict())
 
     def calculate_action_priority(self, s):
         if s.dim() == 1:
@@ -176,7 +181,6 @@ class EvaluationModule(nn.Module):
         values_ = self.e_n_(s_)
 
         c_loss = torch.pow(r + values_ - values, 2)
-
 
         return c_loss
 
@@ -231,15 +235,15 @@ class Worker:
 
     def calculate_grad_e(self, s, s_, r):
         loss = self.evaluation_module.loss(s, s_, r)
-        writer.add_scalar('evaluation_module/loss', loss.item())
+        # writer.add_scalar('evaluation_module/loss', loss.item())
         print("evaluation_module: loss:{:6f}".format(loss.item()))
         loss.backward()
         return self.evaluation_module.grad()
 
     def calculate_grad_b(self, s, a, s_, r):
         c_loss, a_loss = self.behavior_module.loss(s, a, r, s_)
-        writer.add_scalar('behavior_module/c_loss', c_loss.item())
-        writer.add_scalar('behavior_module/a_loss', a_loss.item())
+        # writer.add_scalar('behavior_module/c_loss', c_loss.item())
+        # writer.add_scalar('behavior_module/a_loss', a_loss.item())
         print("behavior_module: c_loss:{:6f}, a_loss:{:6f}".format(c_loss.item(), a_loss.item()))
         c_loss.backward()
         a_loss.backward()
@@ -268,13 +272,21 @@ class Worker:
         self.behavior_module.update_target_network()
 
 
-episodes = 1
+episodes = 10
 tmax = 1000
 lr = 1e-4
 momentum = 0.8
 target_update_freq = 10000
+action_desc = ['停', '右', '左', '上', '下']
+
 
 def train():
+    # prof = profiler.profile(
+    #     schedule=profiler.schedule(wait=1, warmup=1, active=3, repeat=2),
+    #     on_trace_ready=profiler.tensorboard_trace_handler('./log/isrl'),
+    #     record_shapes=True,
+    #     with_stack=True)
+    # prof.start()
     env = GridEnv()
     states = env.reset()
     states = torch.tensor(states, dtype=torch.float32)
@@ -291,20 +303,24 @@ def train():
     optim_behavior = torch.optim.SGD(virtual_worker.behavior_module.parameters(), lr=lr, momentum=momentum)
     optim_evaluation = torch.optim.SGD(virtual_worker.evaluation_module.parameters(), lr=lr, momentum=momentum)
     count = 0
-    for episode in range(episodes):
+    for _ in range(episodes):
         t = 1
         global_reward = 0
         while t <= tmax:
             count += 1
+            print("count: {}".format(count))
             if count % target_update_freq == 0:
-                worker.update_target_network()
+                for worker in workers:
+                    worker.update_targep_network()
             # evaluation module
             # 收集每一个智能体下一个状态和奖励
             states_, rewards = [], []
             for idx, worker in enumerate(workers):
                 state = states[idx]
                 action = worker.get_action(state)
+                print('evaluation module agent: {} do action: {}'.format(idx, action_desc[action]))
                 state_, reward, done, info = env.step_agent(idx, action)
+                # print("info: {}".format(info))
                 states_.append(state_)
                 rewards.append(reward)
 
@@ -320,13 +336,16 @@ def train():
 
                 state_ = torch.tensor(state_, dtype=torch.float32)
                 reward = torch.tensor(reward, dtype=torch.float32)
-
+                begin = time.time_ns()
                 grad_e = workers[idx].calculate_grad_e(state, state_, reward)
+                # print("evaluation_module consume time: {}".format(time.time_ns() - begin))
                 grad_all.append(grad_e)
 
             # 对收集后的梯度进行加和平均，更新虚拟智能体的参数
             optim_evaluation.zero_grad()
-            grad_avg = np.sum(grad_all, axis=0) / len(grad_all)
+            grad_all_numpy = [[_.numpy() for _ in g] for g in grad_all]
+            grad_avg = np.sum(grad_all_numpy, axis=0) / len(grad_all_numpy)
+            grad_avg = [torch.tensor(avg, dtype=torch.float32) for avg in grad_avg]
             virtual_worker.set_grad_e(grad_avg)
             optim_evaluation.step()
 
@@ -344,25 +363,25 @@ def train():
 
             # 这里已经获取了每一个智能体的优先级
             # 根据 coordination channel 的范围计算每一个智能体是否能够行动
-            dt = np.dtype([('action_priority', np.float32), ('idx', np.uint8), ('state', np.ndarray)])
-            can_action_agent = []
-            for action_priority, idx, state in action_priority_all:
-                agents_neighbors = env.get_neighborhood(idx)
-                agents_neighbors.append(idx)
-                # TODO 对于一个智能体，获取到它周围优先级最大的那个智能体
-                max = idx
-                for neighbor in agents_neighbors:
-                    if action_priority_all[neighbor] > action_priority_all[max]:
-                        max = neighbor
-                # tmp = np.max(agents_neighbors)
-                if max == idx:
-                    can_action_agent.append((action_priority, idx, state))
-
             # dt = np.dtype([('action_priority', np.float32), ('idx', np.uint8), ('state', np.ndarray)])
-            # action_priority_all = np.array(action_priority_all, dtype=dt)
-            # action_priority_all = np.sort(action_priority_all, order='action_priority')
+            # can_action_agent = []
+            # for action_priority, idx, state in action_priority_all:
+            #     agents_neighbors = env.get_neighborhood(idx)
+            #     agents_neighbors.append(idx)
+            #     # TODO 对于一个智能体，获取到它周围优先级最大的那个智能体
+            #     max_idx = idx
+            #     for neighbor in agents_neighbors:
+            #         if action_priority_all[neighbor] > action_priority_all[max_idx]:
+            #             max_idx = neighbor
+            #     # tmp = np.max(agents_neighbors)
+            #     if max_idx == idx:
+            #         can_action_agent.append((action_priority, idx, state))
+
+            dt = np.dtype([('action_priority', np.float32), ('idx', np.uint8), ('state', np.ndarray)])
+            action_priority_all = np.array(action_priority_all, dtype=dt)
+            action_priority_all = np.sort(action_priority_all, order='action_priority')
             # 目前是假设所有的智能体都能够感知到其它全部智能体
-            # action_priority_select = action_priority_all[0:len(action_priority_all) // 2]
+            can_action_agent = action_priority_all[0:len(action_priority_all) // 2]
 
             if global_reward > 0:
                 break
@@ -372,23 +391,31 @@ def train():
             for action_priority, idx, state in can_action_agent:
                 states[idx] = state
                 action = workers[idx].get_action(state)
+                print('behavior module agent: {} do action: {}'.format(idx, action_desc[action]))
                 state_, reward, done, info = env.step_agent(idx, action)
-
+                # print("info: {}".format(info))
                 state_ = torch.tensor(state_, dtype=torch.float32)
                 # action = torch.tensor(action, dtype=torch.float32)
-
+                begin = time.time_ns()
                 grad_p, grad_b = workers[idx].calculate_grad_b(states[idx], action, state_, reward)
+                # print("behavior_module consume time: {}".format(time.time_ns() - begin))
                 grad_all.append((grad_p, grad_b))
 
             # 对收集后的梯度进行加和平均，更新虚拟智能体的参数
             optim_behavior.zero_grad()
-            grad_avg = np.sum(grad_all, axis=0) / len(grad_all)
+            grad_all_numpy = [[[__.numpy() for __ in _] for _ in g] for g in grad_all]
+            grad_avg = np.sum(grad_all_numpy, axis=0) / len(grad_all_numpy)
+            grad_avg = [[torch.tensor(_, dtype=torch.float32) for _ in avg] for avg in grad_avg]
+            # grad_avg = np.sum(grad_all, axis=0) / len(grad_all)
             virtual_worker.set_grad_b(grad_avg)
             optim_behavior.step()
 
             # 每一个智能体更新参数
             for idx, worker in enumerate(workers):
                 worker.set_params_b(virtual_worker.get_params_b())
+
+    #         prof.step()
+    # prof.stop()
 
 
 if __name__ == '__main__':
